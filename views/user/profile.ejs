@@ -29,8 +29,13 @@
 			      	<ul class="nav navbar-nav navbar-right">
 			     	   	<li><a href="/">Home</a></li>
 			        	<li class="active"><a href="/profile">Profile</a></li>
-						<li><a href="/login">Login</a></li>
-						<li><a href="/signup">Sign Up</a></li>
+						<% if (!ejsUser) { %>
+							<li><a href="/login">Login</a></li>
+							<li><a href="/signup">Sign Up</a></li>
+						<% } else { %>
+							<li><a href="#">Hello <%= ejsUser.email %></a></li>
+						<% } %>
+						
 						<li class="dropdown"> </li>
 					</ul> 
 				</div>	        
@@ -49,7 +54,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 				<div class="row">
 					<div class="col-sm-6">
 						<h3>Profile</h3>

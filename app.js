@@ -105,7 +105,7 @@ app.post('/login', function(req,res){
 app.get("/profile", function(req,res) {
   req.currentUser()
       .then(function(dbUser) {
-      	console.log("profile page works!!")
+      	console.log("profile page works!!");
         res.render('user/profile', {ejsUser: dbUser});
       });
 });
@@ -117,25 +117,63 @@ app.delete('/logout', function(req,res){
 });
 
 
-// We use the request module to make a request to
-// jokes.p.mashape.com. We pass in a callback that takes in three
-// parameters, error, response, and body.
-request('https://webknox-jokes.p.mashape.com/jokes/search', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log("THIS IS THE RESPONSE", response);
-      console.log(body); // Show the HTML for the jokes site. 
-    }
-});
-
-
 // We have our search route that renders our search view
 app.get('/search', function(req,res) {
-  res.render('search', {joke: []});
+	  var jokeSearch = req.query.js;
+
+    if(!jokeSearch) {
+  	   res.render("search", {jokes: [], noJokes: true});
+    } else {
+      var options = {
+        url: "https://webknox-jokes.p.mashape.com/jokes/search?category=" + jokeSearch,
+        headers: {
+          'X-Mashape-Key': 'TXdXq0nIjKmshMYUqcr6krjKGIIXp1I2RFyjsnU6yqrykgONUf'
+        }
+      };
+
+      request(options, function(err, response, body) {
+        if (!err && response.statusCode == 200) {
+          var jokes = JSON.parse(body); // this convert the JSON objects into something you can display
+
+          console.log(jokes);
+
+          if (jokes) {
+            res.render('search', { jokes: jokes, noJokes: false });
+          } else {
+            res.render('search', { jokes: [], noJokes: true });
+          }
+
+          // if (!jsonData.Search) {
+          //   res.render('search', {jokes: [], noJokes: true});
+          // }
+          
+          // res.render("search", {jokes: jsonData.Search, noJokes: false});
+        }
+      });
+
+    	// We use the request module to make a request to
+    	// jokes.p.mashape.com. We pass in a callback that takes in three
+    	// parameters, error, response, and body.
+  		// request(url, function(err,response,body) {
+    //     if (!err && response.statusCode == 200) {
+    //       console.log("THIS IS THE RESPONSE", response);
+    // 		  console.log(body); // Show the HTML for the jokes site. 
+
+    // 		  var jsonData = JSON.parse(body); // this convert the JSON objects into something you can display
+
+    //       if (!jsonData.Search) {
+    //         res.render('search', {jokes: [], noJokes: true});
+    //       }
+          
+    //       res.render("search", {jokes: jsonData.Search, noJokes: false});
+    //     }
+    //   });
+	  }
 });
 
 // We have our movie route that renders our movie view
 app.get('/joke', function(req,res) {
-  res.render('movie', {joke: {Category: "I'm a movie", Joke: "I'm a plot"}});
+  res.render('jokePage', {joke: {Category: "I'm the category", Joke: "I'm a joke"}});
 });
 
 

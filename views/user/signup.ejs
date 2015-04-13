@@ -1,21 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Sign Up Page</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-</head>
-<body>
-	<div>
-		<a href="/login">Login page </a><br/><br/>
-		<a href="/profile">Profile page </a><br/><br/>
-		<a href="/index">Index page </a><br/><br/>
-	</div>
-	<h2>SignUp Page</h2>
-	<form method="POST" action="/signup">
-		<input type="text" name="email" placeholder="Email">
-		<input type="password" name="password" placeholder="Password">
-		<button>Sign Up</button>
-	</form>
-</body>
+ 	 <head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="Navbar tutorial from BootstrapBay.com">
+	    <meta name="author" content="BootstrapBay.com">
+	    <title>The Sign Up Page</title>
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/custom.css" rel="stylesheet">
+    </head>
+	<body>
+
+    	<!-- start navbar -->
+	    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		    <div class="container">
+		        <div class="navbar-header">
+			        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+					</button>
+		          	<a class="navbar-brand" rel="home" href="/" title="Jokes all day"><img style="max-width:150px; margin-top: -30px;"
+             src="/images/joke_1.png"></a>
+				</div>
+			    <div class="navbar-collapse collapse">
+			      	<ul class="nav navbar-nav navbar-right">
+			     	   	<li><a href="/">Home</a></li>
+			        	<li><a href="/profile">Profile</a></li>
+			        	<li><a href="/login">Login</a></li>
+						<li class="active"><a href="/signup">Sign Up</a></li>
+						<li class="dropdown"> </li>
+					</ul> 
+				</div>	        
+		    </div>
+		</div>
+		<!--end navbar-->
+
+		<!-- start content of body -->
+		<div class="container"> 		
+			<div class="row">
+					<div class="col-xs-8">
+						<h3>Sign up Today!</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit convallis nisl, eget rutrum lectus commodo at. Pellentesque mattis justo vel augue pretium euixsod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>
+					</div>
+
+					<!-- SignUp box -->
+					<div class="col-xs-4">
+						<div class="signupBox">
+							<form method="POST" action="/signup">
+								<input type="text" name="email" placeholder="Email"></br></br>
+								<input type="password" name="password" placeholder="Password"></br></br>
+								<button>Sign Up</button>
+							</form>
+						</div>
+					</div>
+					<!-- end of SignUp box-->
+
+				</div>
+			</div>
+		</div> 
+		<!-- end content of body -->				
+
+		<!-- footer start here-->	
+		<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+			<div class="container">
+				<div class="navbar-text pull-left">
+					<p> © 2015 Hing Tang.</p>
+				</div>
+			</div>	
+		</div>	
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    		<script src="js/bootstrap.min.js"></script>
+	</body>
 </html>

@@ -115,117 +115,36 @@ app.delete('/logout', function(req,res){
   	req.logout();
   	res.redirect('/login');
 });
-
-// app.get('/search/:id',function(req,res){
-//   var jokeSearch = req.params.js;
-//   // if (!jokeSearch) { // this is when you search for an item with no return
-//   //   res.render("search", {jokes: [], noJokes: true});
-//   // } else { 
-//     var url = "http://api.icndb.com/jokes/random/"+jokeSearch; // search movie from API address
-
-//     request(url, function(err, res, body){
-//       console.log("I'm in here 2");
-//       if (!err && res.statusCode === 200) { // not Error or good = code 200
-//         console.log("I'm in here 3");
-//         var jsonData = JSON.parse(body); // this convert the JSON objects into something you can display
-//         if (!jsonData.Search) {
-//           res.render("search", {jokes: [], noJokes: true});
-//         }
-//         res.render("search", {jokes: jsonData.Search, noJokes: false});
-//       }
-//     });
   
 
 app.get('/search', function(req, res){
     // declare a variable for the joke Id that we enter into the search field
-    var randomJokes = req.query.js;
+    var number = req.query.number || 1;
     // declare a variable for the url that we will pass into the API call
     // which includes the joke Id
-    var url = 'http://api.icndb.com/jokes/random/5?='+ randomJokes;
+    var url = 'http://api.icndb.com/jokes/random/' + number;
     // make the API call
-    request(url, function(err, ressponse, body){
-    console.log("I AM WORKING!!!");
-    // declare a variable which consists of the parsed JSON object
-    // specifically, the body
-    var jokeData = JSON.parse(body);
-    console.log(jokeData);
-    // narrow down the content we want to see by focusing on the actual
-    // element in the JSON object, in our case, the joke 
-    var jokeResults = jokeData.value.joke;
-    console.log(jokeResults);
-    // response is to render the search.ejs page, with our content that
-    // we want to pass into the page, i.e, jokes as jokesResults
-    res.render('search', {jokes: jokeResults});
-  });
+    request(url, function(err, response, body){
+      console.log("I AM WORKING!!!");
+      // declare a variable which consists of the parsed JSON object
+      // specifically, the body
+      var jokes = JSON.parse(body).value;
+      // response is to render the search.ejs page, with our content that
+      // we want to pass into the page, i.e, jokes as jokesResults
+      res.render('search', {jokes: jokes});
+    });
 });
 
 
-// app.get('/search', function(req, res){
-//     // declare a variable for the joke Id that we enter into the search field
-//     var randomJokes = req.query.js;
-//     // declare a variable for the url that we will pass into the API call
-//     // which includes the joke Id
-//     var url = 'http://api.icndb.com/jokes/random/?='+ randomJokes;
-//     // make the API call
-//     request(url, function(err, ressponse, body){
-//     console.log("I AM WORKING!!!");
-//     // declare a variable which consists of the parsed JSON object
-//     // specifically, the body
-//     var jokeData = JSON.parse(body);
-//     console.log(jokeData);
-//     // narrow down the content we want to see by focusing on the actual
-//     // element in the JSON object, in our case, the joke 
-//     var jokeResults = jokeData.value.joke;
-//     console.log(jokeResults);
-//     // response is to render the search.ejs page, with our content that
-//     // we want to pass into the page, i.e, jokes as jokesResults
-//     res.render('search', {jokes: jokeResults});
-//   });
+
+// // We have our movie route that renders our movie view
+// app.get('/joke', function(req,res) {
+//     res.render('jokePage', {joke: {Category: "I'm the category", Joke: "I'm a joke"}});
 // });
-
-// app.get('/search', function(req, res){
-//   res.render('search.ejs', {joke: jokeResults});
-// });
-// // We have our search route that renders our search view
-// app.get('/search:', function(req,res) {
-// 	  var jokeSearch = req.query.js;
-//     var options = "http://api.icndb.com/jokes/id/"
-
-//     if(!jokeSearch) {
-//   	    res.render("search", {jokes: [], noJokes: true});
-//     } else {
-      
-//         // var options = {
-//         //     url: "https://webknox-jokes.p.mashape.com/jokes/search?category=" + jokeSearch,
-//         //     headers: {
-//         //         'X-Mashape-Key': 'TXdXq0nIjKmshMYUqcr6krjKGIIXp1I2RFyjsnU6yqrykgONUf'
-//         //     }
-//         // };
-
-//         request(options, function(err, response, body) {
-//           if (!err && response.statusCode == 200) {
-//               var jokes = JSON.parse(body); // this convert the JSON objects into something you can display
-
-//               console.log(jokes);
-
-//               if (jokes) {
-//                   res.render('search', { jokes: jokes, noJokes: false });
-//               } else {
-//                   res.render('search', { jokes: [], noJokes: true });
-//               }
-//           }
-//         });
-// 	  }
-// });
-
-// We have our movie route that renders our movie view
-app.get('/joke', function(req,res) {
-    res.render('jokePage', {joke: {Category: "I'm the category", Joke: "I'm a joke"}});
-});
 
 
 
 
 app.listen(process.env.PORT || 3000), function () {
     console.log("RUN SERVER RUN");
-});
+};

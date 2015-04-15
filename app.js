@@ -118,6 +118,22 @@ app.delete('/logout', function(req,res){
   
 
 app.get('/search', function(req, res){
+// this take the input from profile or index page 
+    var number = req.query.number || 1;
+// this var to the API
+    var url = 'http://api.icndb.com/jokes/random/' + number;
+// this call to the API
+    request(url, function(err, response, body){
+      console.log("I AM WORKING!!!");
+// this creat a var to parse the JSON file from API
+      var formJSON = JSON.parse(body).value;
+// this render on the search page, 
+      res.render('search', {jokes: formJSON});
+    });
+});
+
+// this search the API for jokes to return
+app.get('/search', function(req, res){
     // declare a variable for the joke Id that we enter into the search field
     var number = req.query.number || 1;
     // declare a variable for the url that we will pass into the API call
@@ -135,16 +151,16 @@ app.get('/search', function(req, res){
     });
 });
 
+// this post to the db
+app.post('/favoritejoke', function(req, res) {
+  var selectedJoke = req.body.joke
+  // this put favorite joke in db, second part attach it to the current userId
+  db.favoriteJoke.create({joke: selectedJoke, UserId: req.session.userId}).then(function(){
+    res.redirect("/profile");
+  });
 
+});
 
-// // We have our movie route that renders our movie view
-// app.get('/joke', function(req,res) {
-//     res.render('jokePage', {joke: {Category: "I'm the category", Joke: "I'm a joke"}});
-// });
-
-
-
-
-app.listen(process.env.PORT || 3000), function () {
+app.listen((process.env.PORT || 3000), function () {
     console.log("RUN SERVER RUN");
-};
+});

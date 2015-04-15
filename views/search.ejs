@@ -42,6 +42,12 @@
 				<ol>
 					<% jokes.forEach(function(apiJoke) { %>
 						<li><%= apiJoke.joke %></li>
+						<!-- beginning of favorite button -->
+						<form method="POST" action="/favoritejoke">
+							<input type="text" value="<%=apiJoke.joke %>" name="joke" style="display: none;">
+							<button> Favorite </button>
+						</form>
+						
 					<% }); %>
 				</ol>
 			</div>

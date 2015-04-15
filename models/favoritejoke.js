@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
   var favoriteJoke = sequelize.define("favoriteJoke", {
     category: DataTypes.STRING,
     joke: DataTypes.STRING,
-    rating: DataTypes.INTEGER
+    rating: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

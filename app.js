@@ -101,14 +101,32 @@ app.post('/login', function(req,res){
     	  }); 
 });
 
-// this route to the profile page
-app.get("/profile", function(req,res) {
+// //this route to the profile page
+// app.get("/profile", function(req,res) {
+//     req.currentUser()
+//         .then(function(dbUser) {
+//           	console.log("profile page works!!");
+//             res.render('user/profile', {ejsUser: dbUser});
+//         });
+// });
+
+
+// //******* TEMP code *******
+app.get('/profile', function(req,res){
     req.currentUser()
-        .then(function(dbUser) {
-          	console.log("profile page works!!");
-            res.render('user/profile', {ejsUser: dbUser});
+    .then(function(dbUser){
+      if (dbUser) {
+        db.favoriteJoke.findAll({where: {UserId: dbUser.id}})
+          .then(function(joke){
+            console.log("\n\n\n\n\nHELLO", joke);
+          res.render('user/profile', {ejsUser: dbUser, idk: joke});
         });
+      } else {
+       res.redirect('/login');
+      }
+    });
 });
+// // ***** TEMP codes ******
 
 //this is to end the session
 app.delete('/logout', function(req,res){
@@ -136,11 +154,13 @@ app.get('/search', function(req, res){
 
 // this post to the db
 app.post('/favoritejoke', function(req, res) {
-  // this will apply to the button related to the joke
+  // this is the the selected joke
   var selectedJoke = req.body.joke
   // this put create a favorite joke in db, second part attach it to the current userId
-  db.favoriteJoke.create({joke: selectedJoke, UserId: req.session.userId}).then(function(){
-    res.redirect("/profile");
+  db.favoriteJoke.create
+      ({joke: selectedJoke, UserId: req.session.userId})
+      .then(function(){
+      res.redirect('/profile');
   });
 
 });

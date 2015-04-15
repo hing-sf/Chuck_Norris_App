@@ -40,13 +40,16 @@
 
 				<div class="row">
 					<div class="col-sm-6">
-						<h3>Profile</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit convallis nisl, eget rutrum lectus commodo at. Pellentesque mattis justo vel augue pretium euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>
+						<ol>
+							<% idk.forEach(function(fav){ %>
+							<li><%= fav.joke %></li>
+							<% }) %>
+						</ol>
 					</div>
 
 					<div class="col-sm-6">
-						<h3>Favorite Jokes</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit convallis nisl, eget rutrum lectus commodo at. Pellentesque mattis justo vel augue pretium euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>	
+						<h3>Profile</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit convallis nisl, eget rutrum lectus commodo at. Pellentesque mattis justo vel augue pretium euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>
 					</div>				
 				</div>
 		</div>

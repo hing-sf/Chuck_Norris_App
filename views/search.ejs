@@ -38,12 +38,14 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-12 offset-6">
-
-				<ol>
-					<% jokes.forEach(function(apiJoke) { %>
-						<li><%= apiJoke.joke %></li>
+				<ol> <!-- parseJOSN is from app.js file -->
+					<% parseJSON.forEach(function(apiJoke) { %>
+						<!-- this pass the API joke onto each line -->
+						<li><%= apiJoke.joke %></br></br></li>
 						<!-- beginning of favorite button -->
+						<!-- this post to app.post('/favoritejoke') -->
 						<form method="POST" action="/favoritejoke">
+							<!-- value is taking the joke(value) the is coming in from the API -->
 							<input type="text" value="<%=apiJoke.joke %>" name="joke" style="display: none;">
 							<button> Favorite </button>
 						</form>

@@ -116,7 +116,7 @@ app.delete('/logout', function(req,res){
   	res.redirect('/login');
 });
   
-
+// this will request from the API
 app.get('/search', function(req, res){
 // this take the input from profile or index page 
     var number = req.query.number || 1;
@@ -126,35 +126,19 @@ app.get('/search', function(req, res){
     request(url, function(err, response, body){
       console.log("I AM WORKING!!!");
 // this creat a var to parse the JSON file from API
-      var formJSON = JSON.parse(body).value;
-// this render on the search page, 
-      res.render('search', {jokes: formJSON});
+      var thisParseJSON = JSON.parse(body).value;
+// this render on the search page, the second part pass the readable joke to search page
+      res.render('search', {parseJSON: thisParseJSON});
     });
 });
 
-// this search the API for jokes to return
-app.get('/search', function(req, res){
-    // declare a variable for the joke Id that we enter into the search field
-    var number = req.query.number || 1;
-    // declare a variable for the url that we will pass into the API call
-    // which includes the joke Id
-    var url = 'http://api.icndb.com/jokes/random/' + number;
-    // make the API call
-    request(url, function(err, response, body){
-      console.log("I AM WORKING!!!");
-      // declare a variable which consists of the parsed JSON object
-      // specifically, the body
-      var jokes = JSON.parse(body).value;
-      // response is to render the search.ejs page, with our content that
-      // we want to pass into the page, i.e, jokes as jokesResults
-      res.render('search', {jokes: jokes});
-    });
-});
+
 
 // this post to the db
 app.post('/favoritejoke', function(req, res) {
+  // this will apply to the button related to the joke
   var selectedJoke = req.body.joke
-  // this put favorite joke in db, second part attach it to the current userId
+  // this put create a favorite joke in db, second part attach it to the current userId
   db.favoriteJoke.create({joke: selectedJoke, UserId: req.session.userId}).then(function(){
     res.redirect("/profile");
   });

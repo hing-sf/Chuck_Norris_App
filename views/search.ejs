@@ -26,8 +26,8 @@
 			<div class="row">
 				<div class="col-sm-8">
 					<h3> Jokes: </h3>
-					<form method="GET" action="/search">
-						<input type="number" name="js" placeholder="Search">
+					<form method="GET" action="/search" name="js">
+						<!-- <input type="number" name="js" placeholder="Search"> -->
 						<button>get ready to laugh</button>
 					</form>	
 				</div>
@@ -37,10 +37,11 @@
 				</div>
 			</div>
 			<div class="row">
+				<% jokes.forEach(function(){ %>
 				<h3><%= jokes %></h3>
 			</div>
 		</div>
-		 
+
 		<!-- end content of body -->
 
 		<!-- footer start here-->

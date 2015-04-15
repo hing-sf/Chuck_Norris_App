@@ -134,16 +134,16 @@ app.delete('/logout', function(req,res){
 //         res.render("search", {jokes: jsonData.Search, noJokes: false});
 //       }
 //     });
-//   
+  
 
 app.get('/search', function(req, res){
-  // declare a variable for the joke Id that we enter into the search field
-  var jokeId = req.query.js;
-  // declare a variable for the url that we will pass into the API call
-  // which includes the joke Id
-  var url = 'http://api.icndb.com/jokes/random/5?='+ jokeId;
-  // make the API call
-  request(url, function(err, ressponse, body){
+    // declare a variable for the joke Id that we enter into the search field
+    var randomJokes = req.query.js;
+    // declare a variable for the url that we will pass into the API call
+    // which includes the joke Id
+    var url = 'http://api.icndb.com/jokes/random/5?='+ randomJokes;
+    // make the API call
+    request(url, function(err, ressponse, body){
     console.log("I AM WORKING!!!");
     // declare a variable which consists of the parsed JSON object
     // specifically, the body
@@ -159,6 +159,29 @@ app.get('/search', function(req, res){
   });
 });
 
+
+// app.get('/search', function(req, res){
+//     // declare a variable for the joke Id that we enter into the search field
+//     var randomJokes = req.query.js;
+//     // declare a variable for the url that we will pass into the API call
+//     // which includes the joke Id
+//     var url = 'http://api.icndb.com/jokes/random/?='+ randomJokes;
+//     // make the API call
+//     request(url, function(err, ressponse, body){
+//     console.log("I AM WORKING!!!");
+//     // declare a variable which consists of the parsed JSON object
+//     // specifically, the body
+//     var jokeData = JSON.parse(body);
+//     console.log(jokeData);
+//     // narrow down the content we want to see by focusing on the actual
+//     // element in the JSON object, in our case, the joke 
+//     var jokeResults = jokeData.value.joke;
+//     console.log(jokeResults);
+//     // response is to render the search.ejs page, with our content that
+//     // we want to pass into the page, i.e, jokes as jokesResults
+//     res.render('search', {jokes: jokeResults});
+//   });
+// });
 
 // app.get('/search', function(req, res){
 //   res.render('search.ejs', {joke: jokeResults});
@@ -203,6 +226,6 @@ app.get('/joke', function(req,res) {
 
 
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000), function () {
     console.log("RUN SERVER RUN");
 });

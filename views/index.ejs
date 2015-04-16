@@ -22,27 +22,42 @@
 		<!--end navbar-->
 
 		<!-- content of the body -->
+		<div class="jumbotron">
+			<a href="#" class="thumbnail">
+			<img src="images/ChuckEnterDragon.jpg" alt="chuckBloodType"></a>
+		</div>
+		
 		<!-- Logout button -->
-		<div class="container"> 
+		<div class="container" class="bgimage"> 
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="logoutBtn">
 						<form method="POST" action="/logout?_method=DELETE">
-						<button class="btn btn-danger">Logout</button>
+							<button class="btn btn-danger">Logout</button>
 						</form>
 					</div>
-				</div>	
+
+				</div>
 			</div>
+
 			<!-- end of Logout buttton -->
+
 
 			<!-- Joke search box -->
 			<div class="row">						
 				<div class="col-xs-12">	
-						<h3>Jokes</h3>				
-						<form method="GET" action="/search" >
+						<h3>Jokes</h3>		
+						<form method="GET" action="/search">
 							<input type="text" name="number" placeholder="How many">
-					    	<button>get ready to laugh</button>
-						</form>							
+							<button>get ready to laugh</button>
+						</form>	
+						</br>
+						<form method="GET" action="/search2" >
+							<input type="text" name="firstName" placeholder="First Name">
+							<input type="text" name="lastName" placeholder="Last Name">
+							</br>
+					    	<button>ha ha ha!</button>
+						</form>	
 				</div>							
 			</div>
 			<!-- end of Joke search box-->

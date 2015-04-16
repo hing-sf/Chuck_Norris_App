@@ -27,24 +27,36 @@
 		<!--end navbar-->
 
 		<!-- start content of body -->
+
 		<div class="container"> 
-			<div class="row">				
+			<div class="row">	
 				<div class="col-xs-12">
 					<div class="logoutBtn">	
+						<% if (ejsUser) { %>
 						<form method="POST" action="/logout?_method=DELETE">
 							<button class="btn btn-danger">Logout</button>
 						</form>
+					</div>
+				</div>
+				<% } else { %>
+				<div class="col-xs-12">
+					<div class="loginBtn">	
+						<form method="POST" action="/login">
+							<button class="btn btn-danger">Login</button>
+						</form>
+						<% } %>
 					</div>
 				</div>
 			</div>
 
 				<div class="row">
 					<div class="col-sm-6">
-						<ol>
-							<% idk.forEach(function(fav){ %>
+						<ul><!-- this reference app.get('/profile') -->
+							<% thisJoke.forEach(function(fav){ %>
+							<!-- fav reference the function param and joke is the table col -->
 							<li><%= fav.joke %></li>
 							<% }) %>
-						</ol>
+						</ul>
 					</div>
 
 					<div class="col-sm-6">

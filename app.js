@@ -52,7 +52,7 @@ app.use("/", function (req, res, next) {
 
 
 app.get('/', function(req,res){
-	res.render("index");
+	res.render("index" );
 });
 
 
@@ -111,22 +111,22 @@ app.post('/login', function(req,res){
 // });
 
 
-// //******* TEMP code *******
+
 app.get('/profile', function(req,res){
     req.currentUser()
     .then(function(dbUser){
       if (dbUser) {
         db.favoriteJoke.findAll({where: {UserId: dbUser.id}})
           .then(function(joke){
-            console.log("\n\n\n\n\nHELLO", joke);
-          res.render('user/profile', {ejsUser: dbUser, idk: joke});
+            console.log("test work!");
+          res.render('user/profile', {ejsUser: dbUser, thisJoke: joke});
         });
       } else {
        res.redirect('/login');
       }
     });
 });
-// // ***** TEMP codes ******
+
 
 //this is to end the session
 app.delete('/logout', function(req,res){
@@ -134,19 +134,45 @@ app.delete('/logout', function(req,res){
   	res.redirect('/login');
 });
   
+
 // this will request from the API
 app.get('/search', function(req, res){
-// this take the input from profile or index page 
+    // this take the input from profile or index page 
     var number = req.query.number || 1;
-// this var to the API
+    // this var to the API
     var url = 'http://api.icndb.com/jokes/random/' + number;
-// this call to the API
+    // this call to the API
     request(url, function(err, response, body){
       console.log("I AM WORKING!!!");
-// this creat a var to parse the JSON file from API
-      var thisParseJSON = JSON.parse(body).value;
-// this render on the search page, the second part pass the readable joke to search page
+    // this create a var to parse the JSON file from API
+     var thisParseJSON = JSON.parse(body).value;
+    // this render on the search page, the second part pass the readable joke to search page
       res.render('search', {parseJSON: thisParseJSON});
+    });
+});
+
+  
+// this will request from the API
+app.get('/search2', function(req, res){
+    // this take the input from profile or index page 
+    var firstName = req.query.firstName;
+    var lastName =  req.query.lastName;
+    
+    // this var to the API
+    console.log("first name is ", firstName);
+    setTimeout(function() {
+      console.log("First timeout name is ", firstName);
+    }, 3000);
+    var url = 'http://api.icndb.com/jokes/random?firstName=' + firstName + '\&lastName=' + lastName;
+    // var url = 'http://api.icndb.com/jokes/random?firstName=Andy&amp;lastName=Pohl'
+    // this call to the API
+    request(url, function(err, response, body){
+      console.log("I AM WORKING!!!");
+    // this create a var to parse the JSON file from API
+     var thisParseJSON = JSON.parse(body);
+     console.log(thisParseJSON);
+    // this render on the search page, the second part pass the readable joke to search page
+      res.render('search2', {parseJSON: thisParseJSON});
     });
 });
 
@@ -154,10 +180,11 @@ app.get('/search', function(req, res){
 
 // this post to the db
 app.post('/favoritejoke', function(req, res) {
-  // this is the the selected joke
-  var selectedJoke = req.body.joke
-  // this put create a favorite joke in db, second part attach it to the current userId
-  db.favoriteJoke.create
+   // this is the the selected joke
+   var selectedJoke = req.body.joke
+   // this put create a favorite joke in db, second part attach it to the current userId
+   db.favoriteJoke.create
+   // joke reference db colume
       ({joke: selectedJoke, UserId: req.session.userId})
       .then(function(){
       res.redirect('/profile');

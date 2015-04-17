@@ -52,7 +52,18 @@ app.use("/", function (req, res, next) {
 
 
 app.get('/', function(req,res){
-	res.render("index" );
+    req.currentUser()
+    .then(function(dbUser){
+      if (dbUser) {
+        db.favoriteJoke.findAll({where: {UserId: dbUser.id}})
+          .then(function(joke){
+            console.log("test work!");
+          res.render('index', {ejsUser: dbUser, thisJoke: joke});
+        });
+      } else {
+       res.redirect('/login');
+      }
+    });
 });
 
 

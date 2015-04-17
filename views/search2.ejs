@@ -25,32 +25,40 @@
 		<div class="container"> 		
 			<div class="row">
 				<div class="col-sm-6">
-					<h3> Jokes: </h3>
+				<h3>Search result</h3>
+					<h4>How many Joke can you handle</h4>	
 					<form method="GET" action="/search">
 						<input type="text" name="number" placeholder="How many">
 						<button>get ready to laugh</button>
 					</form>	
 					</br>
+					</br>
+					</br>
+					</br>
+					<h4>Enter your Name</h4>
 					<form method="GET" action="/search2" >
 						<input type="text" name="firstName" placeholder="First Name">
 						<input type="text" name="lastName" placeholder="Last Name">
 						</br>
-				    	<button>ha ha ha!</button>
+				    	<button>O yea!</button>
 					</form>	
 				</div>
 				<div class="col-sm-6">
-					<h3>Chuck knows!!</h3>
-					<a href="#" class="thumbnail">
-						<img src="images/chuck.jpg" alt="chuckBloodType"></a>
+					<h4>BONUS: Mario get owned!</h4>
+					<iframe width="420" height="315" src="https://www.youtube.com/embed/BeNN3brE8Ew" frameborder="0" allowfullscreen></iframe>
 				</br>
 				</div>
 			</div>
+			</br>
+			</br>
+			</br>
+			</br>
 			<div class="row">
 				<div class="col-sm-12 offset-6">
 				<ol> <!-- parseJOSN is from app.js file -->
 				<div class="row">
 					<div class="col-sm-12 offset-6">
-					<li><%= parseJSON.value.joke %></li>
+					<h4><%= parseJSON.value.joke %></h4>
 					<form method="POST" action="/favoritejoke">
 						<!-- value is taking the joke(value) the is coming in from the API -->
 						<input type="text" value="<%=parseJSON.joke %>" name="joke" style="display: none;">

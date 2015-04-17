@@ -105,7 +105,7 @@ app.post('/login', function(req,res){
     	  .then(function(dbUser){
       	  	if(dbUser) {
         	  		req.login(dbUser);
-        	  		res.redirect('/profile');
+        	  		res.redirect('/');
       	  	} else {
       	  	  	res.redirect('/login');
       	  	}

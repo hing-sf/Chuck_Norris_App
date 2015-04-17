@@ -22,7 +22,13 @@
 		<!--end navtab-->
 
 		<!-- start content of body -->
-		<div class="container"> 		
+		<!-- Jumbotron -->
+		<div class="jumbotron" id="jumbo" style="background:#ffffff">
+			<a href="" class="thumbnail">
+			<img src="images/ChuckEnterDragon.jpg" alt="chuckBloodType"></a>
+		</div>
+
+		<div class="container"> 
 			<div class="row">
 				<div class="col-sm-8">
 					<h3>Login</h3>
@@ -35,13 +41,14 @@
 						<form method="POST" action="/login">
 						<input type="text" name="email" placeholder="Email"></br></br>
 						<input type="password" name="password" placeholder="Password"></br></br>
-						<button>Login</button>
+						<button class="btn btn-danger">Login</button>
 						</form>
 					</div>
 				</div>
 				<!-- end of Login box -->
 			</div>
 		</div> 
+					
 		<!-- end content of body -->
 
 		<!-- footer start here-->

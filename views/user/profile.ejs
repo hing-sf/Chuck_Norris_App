@@ -38,8 +38,10 @@
 						</form>
 					</div>
 				</div>
+			</div>
+			<div class="row">
 				<% } else { %>
-				<div class="col-xs-12">
+				<div class="col-sm-12">
 					<div class="loginBtn">	
 						<form method="POST" action="/login">
 							<button class="btn btn-danger">Login</button>
@@ -48,22 +50,37 @@
 					</div>
 				</div>
 			</div>
-
-				<div class="row">
-					<div class="col-sm-6">
-						<ul><!-- this reference app.get('/profile') -->
-							<% thisJoke.forEach(function(fav){ %>
-							<!-- fav reference the function param and joke is the table col -->
-							<li><%= fav.joke %></li>
-							<% }) %>
-						</ul>
-					</div>
-
-					<div class="col-sm-5 offset-1">
-						<h3>Profile</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit convallis nisl, eget rutrum lectus commodo at. Pellentesque mattis justo vel augue pretium euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce eu turpis eros.</p>
-					</div>				
+		</div>
+	</br>
+		<div class="container"> 
+			<div class="row">
+				<div class="col-sm-12">
+					<h3>Favorite Jokes</h3>
 				</div>
+			</div>
+		</div>
+		<div class="container"> 
+			<div class="col-sm-8">
+				<ul><!-- this reference app.get('/profile') -->
+					<% thisJoke.forEach(function(fav){ %>
+					<!-- fav reference the function param and joke is the table col -->
+					<li><%= fav.joke %></li>
+					<% }) %>
+				</ul>
+			</div>
+				<div class="col-sm-4">
+					<img src="images/ChuckNorrisApproved_200.gif" alt="chuckBloodType">	
+				</div>				
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="col-sm-12">
+			</br></br></br>
+				<h4>BONUS video: Mario get owned!</h4>
+					<iframe width="420" height="315" src="https://www.youtube.com/embed/BeNN3brE8Ew" frameborder="0" allowfullscreen></iframe>
+				</br>
+			</div>
 		</div>
 		<!-- end content of body -->				
 

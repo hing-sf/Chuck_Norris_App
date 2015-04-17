@@ -4,14 +4,17 @@
 }
 
 body {
-	margin-top: 0px;
-	padding-top: 70px;
+	margin-top: 30px;
+	padding-top: 30px;
+	padding-bottom: 0px;
 	padding-bottom: 100px;
 }
 
 .jumbotron {
 	margin-top:0px;
-	padding-right: 0px;
+	padding-bottom: 60px;
+	background-color: #cccccc;
+
 }
 
 .signupBox {
@@ -34,3 +37,8 @@ body {
 	background-color: 999999;
 	
 }
+
+#jumbo {
+  padding: 10px;
+}
+

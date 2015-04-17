@@ -21,38 +21,49 @@
 		</div>
 		<!--end navbar-->
 
+		<div class="container" class="bgimage"> 
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="logoutBtn">
+						<form method="POST" action="/logout?_method=DELETE">
+							<button class="btn btn-danger">Logout</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		</br>
 		<!-- start content of body -->
-		<div class="container"> 		
+	<div class="container">
+		<div class="jumbotron"> 			
 			<div class="row">
 				<div class="col-sm-6">
 				<h3>Search result</h3>
 					<h4>How many Joke can you handle</h4>	
 					<form method="GET" action="/search">
-						<input type="text" name="number" placeholder="How many">
-						<button>get ready to laugh</button>
+						<input type="text" name="number" placeholder="Number of Jokes">
+					</br></br>
+						<button class="btn btn-primary">Click</button>
 					</form>	
-					</br>
-					</br>
+					</div>
+					<div class="col-sm-6">
 					</br>
 					</br>
 					<h4>Enter your Name</h4>
 					<form method="GET" action="/search2" >
 						<input type="text" name="firstName" placeholder="First Name">
 						<input type="text" name="lastName" placeholder="Last Name">
-						</br>
-				    	<button>O yea!</button>
+						</br></br>
+						<button class="btn btn-primary">Click</button>
 					</form>	
-				</div>
-				<div class="col-sm-6">
-					<h4>BONUS: Mario get owned!</h4>
-					<iframe width="420" height="315" src="https://www.youtube.com/embed/BeNN3brE8Ew" frameborder="0" allowfullscreen></iframe>
-				</br>
+					</div>
 				</div>
 			</div>
-			</br>
-			</br>
-			</br>
-			</br>
+		</div>
+	</div>
+			</br></br>
+
+		<div class="container"> 
 			<div class="row">
 				<div class="col-sm-12 offset-6">
 				<ol> <!-- parseJOSN is from app.js file -->
@@ -60,14 +71,17 @@
 					<div class="col-sm-12 offset-6">
 					<h4><%= parseJSON.value.joke %></h4>
 					<form method="POST" action="/favoritejoke">
+
 						<!-- value is taking the joke(value) the is coming in from the API -->
-						<input type="text" value="<%=parseJSON.joke %>" name="joke" style="display: none;">
-						<button> Favorite </button>
+						<input type="text" value="<%=parseJSON.value.joke %>" name="joke" style="display: none;">
+						</br>
+						<button class="btn btn-success">Add to Favorite</button>
+						
 					</form>
+
 				</div>
 				</ol>
 		</div>
-		
 		<!-- end content of body -->
 
 		<!-- footer start here-->

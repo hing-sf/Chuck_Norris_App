@@ -26,7 +26,6 @@
 		<!--end navbar-->
 
 		<!-- content of the body -->
-
 		<!-- Logout button -->
 		<div class="container" class="bgimage"> 
 			<div class="row">
@@ -36,24 +35,26 @@
 							<button class="btn btn-danger">Logout</button>
 						</form>
 					</div>
-					<div class="jumbotron">
-						<a href="" class="thumbnail">
-						<img src="images/ChuckEnterDragon.jpg" alt="chuckBloodType"></a>
-					</div>
-
 				</div>
 			</div>
+		</div>
 
-			<!-- end of Logout buttton -->
+		<!-- Jumbotron -->
+		<div class="jumbotron" id="jumbo" style="background:#ffffff">
+			<a href="" class="thumbnail">
+			<img src="images/ChuckEnterDragon.jpg" alt="chuckBloodType"></a>
+		</div>
 
-
-			<!-- Joke search box -->
+		<!-- Joke search box -->
+		<div class="container">
 			<div class="row">						
 				<div class="col-xs-6">	
 						<h4>How many Joke can you handle</h4>		
 						<form method="GET" action="/search">
-							<input type="text" name="number" placeholder="How many">
-							<button>get ready to laugh</button>
+							<input type="text" name="number" placeholder="Number of Jokes">
+						</br>
+						</br>
+						<button class="btn btn-primary">Click</button>
 						</form>	
 				</div>	
 				<div class="col-xs-6">	
@@ -61,17 +62,16 @@
 					<form method="GET" action="/search2" >
 						<input type="text" name="firstName" placeholder="First Name">
 						<input type="text" name="lastName" placeholder="Last Name">
-						<button>O yea!</button>
+						</br>
+						</br>
+						<button class="btn btn-primary">Click</button>
 					</form>	
-				</div>
-										
+				</div>										
 			</div>
-			<!-- end of Joke search box-->
+		</div>
 			<!-- end content of body-->
 		
 		<!-- footer start here-->
 		<% include partials/footer %>
-	</body>
-</html>
 	</body>
 </html>

@@ -50,14 +50,18 @@ app.use("/", function (req, res, next) {
   next(); 
 });
 
-
+// this get the index page
 app.get('/', function(req,res){
+  // requesting the current user
     req.currentUser()
+    // then it is asking if the user is logged in or not
     .then(function(dbUser){
       if (dbUser) {
+        // find favorite joke from db with user Id
         db.favoriteJoke.findAll({where: {UserId: dbUser.id}})
           .then(function(joke){
             console.log("test work!");
+            // this let me pass the user into the page
           res.render('index', {ejsUser: dbUser, thisJoke: joke});
         });
       } else {

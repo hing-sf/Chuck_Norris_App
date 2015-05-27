@@ -207,6 +207,14 @@ app.post('/favoritejoke', function(req, res) {
 
 });
 
+app.get('/sync', function(req, res) {
+
+  db.sequelize.sync({force:true}).then(function() {
+    res.send("Db was synced successfully.");
+  })
+
+});
+
 app.listen(process.env.PORT || 3000, function () {
     console.log("RUN SERVER RUN");
 });
